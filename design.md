@@ -23,3 +23,4 @@ Keypad in door to unlock front door
 5. Potetiometers caculate the brightness of the LEds
 
 6. Keypad on the front door in order to unlock
+

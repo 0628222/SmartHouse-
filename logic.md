@@ -30,3 +30,9 @@ flowchart TD
     CheckButton-->|Yes| SoundDoorBell
     CheckButton-->|No| finish
     SoundDoorBell-->finish    
+```
+##   Logic 3
+```mermaid
+flowchart TD
+    Start([SD card])
+    
