@@ -34,5 +34,24 @@ flowchart TD
 ##   Logic 3
 ```mermaid
 flowchart TD
-    Start([SD card])
+    Start([SD card]) -->
+    Log(info to card) -->
+    Info(Once logged cry) 
+```
+
+
+## Logic 4
+```mermaid
+flowchart TD
+    Start(cry) -->
+    Cry(cry harder) -->
+    Weep(start weeping)
+```
+
+## Logic 5
+```mermaid 
+flowchart TD
+    Start(PIR) -->
+    check(Infared) -->
+    if(spam piezo)
     
