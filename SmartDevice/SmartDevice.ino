@@ -8,7 +8,7 @@ RTC_Millis rtc;     // Software Real Time Clock (RTC)
 DateTime rightNow;  // used to store the current time.
 
 // SD Card - Confirm Pin
-#define SDpin 53
+#define SDpin 10
 
 void setup() {
   // put your setup code here, to run once:
@@ -28,4 +28,32 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
+  doorbell(); 
+
+
+
+  delay(250);
+}
+/*
+ controlls the doorbell(crash button) activates Piezo 
+ @params none
+ @return none 
+ */
+
+void doorbell() {
+   
+}
+
+/*
+ checks PIR and then using potetionemeter adjusts brightness of LEDS 
+ */
+void LEDLights() {
+  
+}
+/*
+ If sonar detects movment then lock the door and keep it shut 
+ */
+
+void lockDoorSecurity() {
+}
 }
