@@ -40,20 +40,39 @@ void loop() {
  @return none 
  */
 
-void doorbell() {
+void doorBell() {
    
 }
 
 /*
  checks PIR and then using potetionemeter adjusts brightness of LEDS 
+ @params
+ @return
  */
-void LEDLights() {
+void lightSystem() {
   
 }
 /*
  If sonar detects movment then lock the door and keep it shut 
+ @params
+ @return
  */
 
 void lockDoorSecurity() {
 }
+
+/* checks to see if infared is infact there then 
+  @params
+  @return
+ */
+void PIRSensor() {
+
 }
+
+
+/* using line sensor it detects when somebody is near by 
+ @params
+ @return
+ */
+void doorOpener() {
+} 
