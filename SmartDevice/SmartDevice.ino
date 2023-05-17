@@ -29,8 +29,10 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
   doorbell(); 
-
-
+  lightSysten();
+  lockDoorSecruity();
+  PIRSensor();
+  doorOpener();
 
   delay(250);
 }
