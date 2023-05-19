@@ -36,16 +36,19 @@ flowchart TD
 flowchart TD
     Start([SD card]) -->
     Log(info to card) -->
-    Info(Once logged cry) 
+    Info 
 ```
 
 
 ## Logic 4
 ```mermaid
 flowchart TD
-    Start(cry) -->
-    Cry(cry harder) -->
-    Weep(start weeping)
+   start([PIR])
+   
+   
+    Start(PIR) -->
+    Checking(check for Infared) -->
+    Infared(alarm)-->|yes| sound alarm
 ```
 
 ## Logic 5
