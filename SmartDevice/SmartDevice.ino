@@ -85,6 +85,12 @@ pinMode(piezoPin,OUTPUT);
 // Sonar - HC-SR04
 pinMode(trigPin, OUTPUT); // Sets the trigPin as an OUTPUT
 pinMode(echoPin, INPUT); // Sets the echoPin as an INPUT
+
+// Line Sensor
+pinMode(lineSensorPin, OUTPUT);
+
+// Crash Sensor / Button
+pinMode(crashSensor, INPUT);
 }
 
 void loop() {
