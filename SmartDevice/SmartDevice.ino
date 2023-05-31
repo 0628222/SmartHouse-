@@ -110,7 +110,9 @@ void loop() {
 */
 
 void doorBell() {
-
+tone(piezoPin, 1000);
+delay(100);
+noTone(piezoPin);
 }
 
 /*
@@ -119,6 +121,10 @@ void doorBell() {
   @return
 */
 void lightSystem() {
+digitalWrite(ledRed, HIGH);
+digitalWrite(ledRed, LOW);
+
+int potValue = analogRead(pot);
 
 }
 /*
@@ -128,6 +134,19 @@ void lightSystem() {
 */
 
 void lockDoorSecurity() {
+int servoPos= 100
+myservo.write(servoPos);
+
+digitalWrite(trigPin, LOW);
+delayMicroseconds(2);
+// Sets the trigPin HIGH (ACTIVE) for 10 microseconds
+digitalWrite(trigPin, HIGH);
+delayMicroseconds(10);
+digitalWrite(trigPin, LOW);
+// Reads the echoPin, returns the sound wave travel time in microseconds
+long duration = pulseIn(echoPin, HIGH);
+// Calculating the distance
+int distance = duration * 0.034 / 2; // Speed of sound wave divided by 2 (go and back)
 }
 
 /* checks to see if infared is infact there then
@@ -144,4 +163,12 @@ void PIRSensor() {
   @return
 */
 void doorOpener() {
+motor.forward();
+delay(1000);
+motor.stop();
+delay(1000);
+motor.backward();
+delay(1000);
+
+
 }
