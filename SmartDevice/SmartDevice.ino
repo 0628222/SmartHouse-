@@ -110,9 +110,11 @@ void loop() {
 */
 
 void doorBell() {
+int crashSensorValue = digitalRead(crashSensor);
 tone(piezoPin, 1000);
 delay(100);
 noTone(piezoPin);
+
 }
 
 /*
@@ -121,11 +123,12 @@ noTone(piezoPin);
   @return
 */
 void lightSystem() {
+if (pirSensor == high);
+{
 digitalWrite(ledRed, HIGH);
 digitalWrite(ledRed, LOW);
-
 int potValue = analogRead(pot);
-
+{else} 
 }
 /*
   If sonar detects movment then lock the door and keep it shut
@@ -147,6 +150,7 @@ digitalWrite(trigPin, LOW);
 long duration = pulseIn(echoPin, HIGH);
 // Calculating the distance
 int distance = duration * 0.034 / 2; // Speed of sound wave divided by 2 (go and back)
+
 }
 
 /* checks to see if infared is infact there then
@@ -154,7 +158,7 @@ int distance = duration * 0.034 / 2; // Speed of sound wave divided by 2 (go and
   @return
 */
 void PIRSensor() {
-
+int pirValue = digitalRead(pirSensor): 
 }
 
 
