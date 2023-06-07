@@ -44,26 +44,24 @@ L298N motor(EN, IN1, IN2);
 #define lineSensorPin 3
 
 // Crash Sensor / Button
-#define crashSensor 7
+#define crashSensor 4
 
 void setup() {
-  // put your setup code here, to run once:
-  Serial.begin(9600);  // Open serial communications and wait for port to open:
+Serial.begin(9600);           // Open serial communications and wait for port to open:
   while (!Serial) {
-    delay(1);  // wait for serial port to connect. Needed for native USB port only
+    delay(1);                   // wait for serial port to connect. Needed for native USB port only
   }
 
-  // SD Card initialisation
+// SD Card initialisation
   Serial.print("Initializing SD card...");
-  if (!SD.begin(SDpin)) {
+  if (!SD.begin(10)) {
     Serial.println("initialization failed!");
-    while (1)
-      ;
+    while (1);
   }
-  // Real Time Clock (RTC)
-  rtc.begin(DateTime(F(__DATE__), F(__TIME__)));
-  Serial.println("initialization done.");
-  logEvent("System Initialisation...");
+// Real Time Clock (RTC)
+rtc.begin(DateTime(F(__DATE__), F(__TIME__)));
+Serial.println("initialization done.");
+logEvent("System Initialisation...");
 
 // Traffic Lights - LED Outputs
 pinMode(ledRed, OUTPUT);
@@ -125,10 +123,14 @@ noTone(piezoPin);
 void lightSystem() {
 if (pirSensor == high);
 {
+  int potentiometerValue = analogRead(A3)
+  int brightness = potentiometerValue / 4;
+  analogWrite(A0, birghtness
 digitalWrite(ledRed, HIGH);
 digitalWrite(ledRed, LOW);
 int potValue = analogRead(pot);
 {else} 
+
 }
 /*
   If sonar detects movment then lock the door and keep it shut
@@ -153,12 +155,13 @@ int distance = duration * 0.034 / 2; // Speed of sound wave divided by 2 (go and
 
 }
 
-/* checks to see if infared is infact there then
+/* checks to see if infared is infact there then sends a signal to the light system(Traffic light LEDs)
   @params
   @return
 */
 void PIRSensor() {
 int pirValue = digitalRead(pirSensor): 
+
 }
 
 
