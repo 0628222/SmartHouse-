@@ -9,7 +9,7 @@ DateTime rightNow;  // used to store the current time.
 
 // Traffic Lights - LED Outputs
 #define ledRed A0
-#define ledYellow A1 
+#define ledYellow A1
 #define ledGreen A2
 
 // DC Motor & Motor Module - L298N
@@ -47,48 +47,48 @@ L298N motor(EN, IN1, IN2);
 #define crashSensor 4
 
 void setup() {
-Serial.begin(9600);           // Open serial communications and wait for port to open:
+  Serial.begin(9600);           // Open serial communications and wait for port to open:
   while (!Serial) {
     delay(1);                   // wait for serial port to connect. Needed for native USB port only
   }
 
-// SD Card initialisation
+  // SD Card initialisation
   Serial.print("Initializing SD card...");
   if (!SD.begin(10)) {
     Serial.println("initialization failed!");
     while (1);
   }
-// Real Time Clock (RTC)
-rtc.begin(DateTime(F(__DATE__), F(__TIME__)));
-Serial.println("initialization done.");
-logEvent("System Initialisation...");
+  // Real Time Clock (RTC)
+  rtc.begin(DateTime(F(__DATE__), F(__TIME__)));
+  Serial.println("initialization done.");
+  logEvent("System Initialisation...");
 
-// Traffic Lights - LED Outputs
-pinMode(ledRed, OUTPUT);
-pinMode(ledYellow, OUTPUT);
-pinMode(ledGreen, OUTPUT);
+  // Traffic Lights - LED Outputs
+  pinMode(ledRed, OUTPUT);
+  pinMode(ledYellow, OUTPUT);
+  pinMode(ledGreen, OUTPUT);
 
-// DC Motor & Motor Module - L298N
-motor.setSpeed(70);
+  // DC Motor & Motor Module - L298N
+  motor.setSpeed(70);
 
-// Servo
+  // Servo
   myservo.attach(9);  // attaches the servo on pin 9 to the servo object
 
-//Potentiometer
-pinMode(pot, INPUT);
+  //Potentiometer
+  pinMode(pot, INPUT);
 
-// Piezo Buzzer
-pinMode(piezoPin,OUTPUT);
+  // Piezo Buzzer
+  pinMode(piezoPin, OUTPUT);
 
-// Sonar - HC-SR04
-pinMode(trigPin, OUTPUT); // Sets the trigPin as an OUTPUT
-pinMode(echoPin, INPUT); // Sets the echoPin as an INPUT
+  // Sonar - HC-SR04
+  pinMode(trigPin, OUTPUT); // Sets the trigPin as an OUTPUT
+  pinMode(echoPin, INPUT); // Sets the echoPin as an INPUT
 
-// Line Sensor
-pinMode(lineSensorPin, OUTPUT);
+  // Line Sensor
+  pinMode(lineSensorPin, OUTPUT);
 
-// Crash Sensor / Button
-pinMode(crashSensor, INPUT);
+  // Crash Sensor / Button
+  pinMode(crashSensor, INPUT);
 }
 
 void loop() {
@@ -108,10 +108,10 @@ void loop() {
 */
 
 void doorBell() {
-int crashSensorValue = digitalRead(crashSensor);
-tone(piezoPin, 1000);
-delay(100);
-noTone(piezoPin);
+  int crashSensorValue = digitalRead(crashSensor);
+  tone(piezoPin, 1000);
+  delay(100);
+  noTone(piezoPin);
 
 }
 
@@ -121,16 +121,28 @@ noTone(piezoPin);
   @return
 */
 void lightSystem() {
-if (pirSensor == high);
-{
-  int potentiometerValue = analogRead(A3)
-  int brightness = potentiometerValue / 4;
-  analogWrite(A0, birghtness
-digitalWrite(ledRed, HIGH);
-digitalWrite(ledRed, LOW);
-int potValue = analogRead(pot);
-{else} 
 
+
+  int potentiometerValue = analogRead(A3);
+  int brightness = potentiometerValue / 4;
+  analogWrite(A0, brightness);
+  digitalWrite(ledRed, HIGH);
+  digitalWrite(ledRed, LOW);
+  int potValue = analogRead(pot);
+  val = digitalRead(PIN);
+  if (pirSensor == HIGH) {
+    digitalWrite(pin, HIGH);
+  }
+  if pirstate == LOW) {
+  Serial.println("motion Detected!");
+    pirState = High;
+  } else {
+    digitalWrite(ledPin, LOW);
+  }
+  if (pirState == HIGH) {
+  serial.println("Motion ended");
+    pirState = LOW;
+  }
 }
 /*
   If sonar detects movment then lock the door and keep it shut
@@ -139,19 +151,19 @@ int potValue = analogRead(pot);
 */
 
 void lockDoorSecurity() {
-int servoPos= 100
-myservo.write(servoPos);
+  int servoPos = 100
+                 myservo.write(servoPos);
 
-digitalWrite(trigPin, LOW);
-delayMicroseconds(2);
-// Sets the trigPin HIGH (ACTIVE) for 10 microseconds
-digitalWrite(trigPin, HIGH);
-delayMicroseconds(10);
-digitalWrite(trigPin, LOW);
-// Reads the echoPin, returns the sound wave travel time in microseconds
-long duration = pulseIn(echoPin, HIGH);
-// Calculating the distance
-int distance = duration * 0.034 / 2; // Speed of sound wave divided by 2 (go and back)
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+  // Sets the trigPin HIGH (ACTIVE) for 10 microseconds
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+  // Reads the echoPin, returns the sound wave travel time in microseconds
+  long duration = pulseIn(echoPin, HIGH);
+  // Calculating the distance
+  int distance = duration * 0.034 / 2; // Speed of sound wave divided by 2 (go and back)
 
 }
 
@@ -160,22 +172,22 @@ int distance = duration * 0.034 / 2; // Speed of sound wave divided by 2 (go and
   @return
 */
 void PIRSensor() {
-int pirValue = digitalRead(pirSensor): 
+  int pirValue = digitalRead(pirSensor):
 
-}
+  }
 
 
-/* using line sensor it detects when somebody is near by
-  @params
-  @return
-*/
-void doorOpener() {
-motor.forward();
-delay(1000);
-motor.stop();
-delay(1000);
-motor.backward();
-delay(1000);
+  /* using line sensor it detects when somebody is near by
+    @params
+    @return
+  */
+  void doorOpener() {
+  motor.forward();
+  delay(1000);
+  motor.stop();
+  delay(1000);
+  motor.backward();
+  delay(1000);
 
 
 }
