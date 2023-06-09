@@ -96,7 +96,6 @@ void loop() {
   doorBell();
   lightSystem();
   lockDoorSecurity();
-  pirSensor();
   doorOpener();
 
   delay(250);
@@ -121,9 +120,9 @@ void doorBell() {
   @return
 */
 void lightSystem() {
-
+  int pirValue = digitalRead(7);
   int ledpin = 13;
-  int input = 7;
+  int input = A0;
   int pirState = LOW;
   int val = 0; 
   int potentiometerValue = analogRead(A3);
@@ -131,8 +130,8 @@ void lightSystem() {
   analogWrite(A0, brightness);
 
   int potValue = analogRead(pot);
-  val = digitalRead(7);
-  if (pirSensor == HIGH) {
+  val = digitalRead(A0);
+  if (val == HIGH) {
     digitalWrite(ledRed, HIGH);
   }
   if (pirState == LOW) {
@@ -156,14 +155,14 @@ void lockDoorSecurity() {
   int servoPos = 100;
   myservo.write(servoPos);
 
-  digitalWrite(trigPin, LOW);
+  digitalWrite(A4, LOW);
   delayMicroseconds(2);
   // Sets the trigPin HIGH (ACTIVE) for 10 microseconds
-  digitalWrite(trigPin, HIGH);
+  digitalWrite(A4, HIGH);
   delayMicroseconds(10);
-  digitalWrite(trigPin, LOW);
+  digitalWrite(A4, LOW);
   // Reads the echoPin, returns the sound wave travel time in microseconds
-  long duration = pulseIn(echoPin, HIGH);
+  long duration = pulseIn(6, HIGH);
   // Calculating the distance
   int distance = duration * 0.034 / 2; // Speed of sound wave divided by 2 (go and back)
 
@@ -173,12 +172,6 @@ void lockDoorSecurity() {
   @params
   @return
 */
-void pirSensor() {
-  int pirValue = digitalRead(pirSensor);
-
-  }
-
-
   /* using line sensor it detects when somebody is near by
     @params
     @return
