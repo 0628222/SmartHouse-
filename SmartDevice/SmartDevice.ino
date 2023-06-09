@@ -96,7 +96,7 @@ void loop() {
   doorBell();
   lightSystem();
   lockDoorSecurity();
-  PIRSensor();
+  pirSensor();
   doorOpener();
 
   delay(250);
@@ -122,25 +122,27 @@ void doorBell() {
 */
 void lightSystem() {
 
-
+  int ledpin = 13;
+  int input = 7;
+  int pirState = LOW;
+  int val = 0; 
   int potentiometerValue = analogRead(A3);
   int brightness = potentiometerValue / 4;
   analogWrite(A0, brightness);
-  digitalWrite(ledRed, HIGH);
-  digitalWrite(ledRed, LOW);
+
   int potValue = analogRead(pot);
-  val = digitalRead(PIN);
+  val = digitalRead(7);
   if (pirSensor == HIGH) {
-    digitalWrite(pin, HIGH);
+    digitalWrite(ledRed, HIGH);
   }
-  if pirstate == LOW) {
+  if (pirState == LOW) {
   Serial.println("motion Detected!");
-    pirState = High;
+    pirState = HIGH;
   } else {
-    digitalWrite(ledPin, LOW);
+    digitalWrite(13, LOW);
   }
   if (pirState == HIGH) {
-  serial.println("Motion ended");
+  Serial.println("Motion ended");
     pirState = LOW;
   }
 }
@@ -151,8 +153,8 @@ void lightSystem() {
 */
 
 void lockDoorSecurity() {
-  int servoPos = 100
-                 myservo.write(servoPos);
+  int servoPos = 100;
+  myservo.write(servoPos);
 
   digitalWrite(trigPin, LOW);
   delayMicroseconds(2);
@@ -171,8 +173,8 @@ void lockDoorSecurity() {
   @params
   @return
 */
-void PIRSensor() {
-  int pirValue = digitalRead(pirSensor):
+void pirSensor() {
+  int pirValue = digitalRead(pirSensor);
 
   }
 
