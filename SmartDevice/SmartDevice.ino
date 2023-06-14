@@ -97,7 +97,6 @@ void loop() {
   lightSystem();
   lockDoorSecurity();
   doorOpener();
-
   delay(250);
 }
 /*
@@ -154,7 +153,7 @@ void lightSystem() {
 void lockDoorSecurity() {
   int servoPos = 100;
   myservo.write(servoPos);
-
+  int pos = 0;    // variable to store the servo position
   digitalWrite(A4, LOW);
   delayMicroseconds(2);
   // Sets the trigPin HIGH (ACTIVE) for 10 microseconds
@@ -165,16 +164,19 @@ void lockDoorSecurity() {
   long duration = pulseIn(6, HIGH); 
   // Calculating the distance
   int distance = duration * 0.034 / 2; // Speed of sound wave divided by 2 (go and back)
-  for (pos = 0; pos <= 180; +=1 ) { //tells the different positions for the servo to go to
-    myservo.write(pos);
-    delay(15) //delays for 15 milliseconds and then goes the other way around
-  }
-  for (pos = 180; pos >= 0; pos -+ 1){ 
-    myservo.wrtie(pos);
-    delay(15); //delays for 15 milliseconds 
-  }
-}
+Servo myservo;  // create servo object to control a servo
 
+}
+  /*for (pos = 0; pos <= 180; pos += 1) { // goes from 0 degrees to 180 degrees
+    myservo.write(pos);              // tell servo to go to position in variable 'pos'
+    delay(15);                       // waits 15ms for the servo to reach the position
+  }
+ */  
+  /* for (pos = 180; pos >= 0; pos -= 1) { // goes from 180 degrees to 0 degrees
+    myservo.write(pos);              // tell servo to go to position in variable 'pos'
+   delay(15);         
+}
+*/ 
 
 /* using line sensor it detects when somebody is near by and then opens the door using a DC motor
   @params
