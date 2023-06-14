@@ -47,7 +47,7 @@ L298N motor(EN, IN1, IN2);
 #define crashSensor 4
 
 void setup() {
-  Serial.begin(9600);           // Open serial communications and wait for port to open:
+  Serial.begin(9600);          // Open serial communications and wait for port to open:
   while (!Serial) {
     delay(1);                   // wait for serial port to connect. Needed for native USB port only
   }
@@ -101,7 +101,7 @@ void loop() {
   delay(250);
 }
 /*
-  controlls the doorbell(crash button) activates Piezo
+  controlls the doorbell(crash button) and then activates Piezo
   @params none
   @return none
 */
@@ -122,31 +122,31 @@ void doorBell() {
 void lightSystem() {
   int pirValue = digitalRead(7);
   int ledpin = 13;
-  int input = A0;
+  int input = A2;
   int pirState = LOW;
-  int val = 0; 
+  int val = 0;
   int potentiometerValue = analogRead(A3);
   int brightness = potentiometerValue / 4;
   analogWrite(A0, brightness);
-
+// checks the potetiometer value and then using that and then using that changes the brightness based upon the value of the potetiometer. the potetimeter is read after the PIR state is checked 
   int potValue = analogRead(pot);
-  val = digitalRead(A0);
+  val = digitalRead(A3);
   if (val == HIGH) {
     digitalWrite(ledRed, HIGH);
   }
   if (pirState == LOW) {
-  Serial.println("motion Detected!");
+    Serial.println("motion Detected!");
     pirState = HIGH;
   } else {
     digitalWrite(13, LOW);
   }
   if (pirState == HIGH) {
-  Serial.println("Motion ended");
+    Serial.println("Motion ended");
     pirState = LOW;
   }
 }
 /*
-  If sonar detects movment then lock the door and keep it shut
+  If sonar detects movment then close and locks the door using servo
   @params
   @return
 */
@@ -162,21 +162,27 @@ void lockDoorSecurity() {
   delayMicroseconds(10);
   digitalWrite(A4, LOW);
   // Reads the echoPin, returns the sound wave travel time in microseconds
-  long duration = pulseIn(6, HIGH);
+  long duration = pulseIn(6, HIGH); 
   // Calculating the distance
   int distance = duration * 0.034 / 2; // Speed of sound wave divided by 2 (go and back)
-
+  for (pos = 0; pos <= 180; +=1 ) { //tells the different positions for the servo to go to
+    myservo.write(pos);
+    delay(15) //delays for 15 milliseconds and then goes the other way around
+  }
+  for (pos = 180; pos >= 0; pos -+ 1){ 
+    myservo.wrtie(pos);
+    delay(15); //delays for 15 milliseconds 
+  }
 }
 
-/* checks to see if infared is infact there then sends a signal to the light system(Traffic light LEDs)
+
+/* using line sensor it detects when somebody is near by and then opens the door using a DC motor
   @params
   @return
 */
-  /* using line sensor it detects when somebody is near by
-    @params
-    @return
-  */
-  void doorOpener() {
+void doorOpener() {
+  int lineSensorValue = digitalRead(3); //checks the value of the line sensor and then opens the door for 100 milliscond and then closes the door 
+    
   motor.forward();
   delay(1000);
   motor.stop();
