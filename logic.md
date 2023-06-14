@@ -21,33 +21,23 @@ flowchart TD
 ```mermaid
 flowchart TD
     Start([Doorlocker])
-    GetSonarDistance(Get Distance)
-    CheckSonarDistance(check Distance)
+    getSonarDistance(Get Distance)
+    checkSonarDistance(check Distance)
     closeAndLockDoor(Close and Lock Front Door)
-    KeepDoorOpen(doorOpen)
+    keepDoorInPlace(keep Door in Place)
     finish([end])
 
-    Start-->GetSonarDistance-->checkSonarDistance
-    CheckSonarDistance-->|Yes| closeAndLockDoor
-    checkSonarDistance-->|No| keepDoorOpen
+    Start-->checkSonarDistance
+    checkSonarDistance-->|Within range| closeAndLockDoor
+    checkSonarDistance-->|Out of range| keepDoorInPlace 
     closeAndLockDoor--> finish    
 ```
-##   Logic 3
+##   SD Card Info 
 ```mermaid
 flowchart TD
     Start([SD card]) -->
     Log(info to card) -->
     Info 
-```
-
-
-## Logic 4
-```mermaid
-flowchart TD
-   start([PIR])
-    Start(PIR) -->
-    Checking(check for Infared) -->
-    Infared(alarm)-->|yes| flash lights on 
 ```
 
 ## Logic 5
@@ -63,3 +53,5 @@ flowchart TD
     CheckPIR-->|Yes| SoundAlarm
     CheckPIR-->|No| finish
     SoundAlarm-->finish    
+
+```
