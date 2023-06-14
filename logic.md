@@ -40,7 +40,7 @@ flowchart TD
     Info 
 ```
 
-## Logic 5
+## Alarm System 
 ```mermaid 
 flowchart TD
     Start([PIR])
